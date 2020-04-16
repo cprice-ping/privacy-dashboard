@@ -1,0 +1,18 @@
+{{#if time }}
+  <div class="consent-detail">
+    <span class="inline-icon icon-calendar"></span>
+    {{moment-format time 'YYYY-MM-DD h:mm a'}}
+  </div>
+{{/if}}
+{{#if browser }}
+  <div class="consent-detail">
+    <span class="inline-icon icon-apps"></span>
+    {{browser}}
+  </div>
+{{/if}}
+{{#if ip}}
+  <div class="consent-detail">
+    <span class="inline-icon icon-globe"></span>
+    {{ip}}
+  </div>
+{{/if}}

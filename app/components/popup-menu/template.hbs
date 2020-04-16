@@ -1,0 +1,12 @@
+<div class="input-menu-button" >
+  <a data-id="action" class="inline" {{action 'toggleMenu'}}>{{title}}</a>
+  {{#if open}}
+    <div class="tooltip-menu up" >
+      <div class="tooltip-menu-options">
+        {{#each options as |option|}}
+          <a class="tooltip-menu-option" {{action 'optionSelected' option preventDefault=true}}>{{option.name}}</a>
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+</div>

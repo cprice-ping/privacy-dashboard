@@ -1,0 +1,27 @@
+<a href="{{backUrl}}" class="page-back-link">« Manage Your Profile</a>
+
+<div class="page-header page-header--underlined">
+  <div class="page-header__title">
+    Privacy and Sharing Permissions
+  </div>
+</div>
+
+<div class="result-set">
+  {{#if model.consentTaskInstance.isRunning}}
+    Loading…
+  {{else if model.consentTaskInstance.error}}
+    An error occurred {{model.consentTaskInstance.error}}
+  {{else if model.consentTaskInstance.value}}
+    {{#each model.consentTaskInstance.value as |record|}}
+      {{consent-row record=record}}
+    {{/each}}
+  {{else}}
+    <h3>You have not set any privacy preferences or sharing permissions.</h3>
+  {{/if}}
+</div>
+
+{{outlet}}
+
+<div class="page-buttons right">
+  <a href="{{backUrl}}" class="button primary" title="Done">Done</a>
+</div>

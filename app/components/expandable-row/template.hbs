@@ -1,0 +1,18 @@
+<div class="row-accessories" data-id="row-accessories">
+  {{input-toggle selected=toggleEnabled onChange=onToggleChange}}
+</div>
+<div class="collapsed-content">
+  <div class="item-title">{{title}}</div>
+
+  {{#if subtitle}}
+    <div class="item-sub-title">{{subtitle}}</div>
+  {{/if}}
+</div>
+
+<div data-id="expanded-row" style="{{rowStyle}}" class="expanded-content indent-content clearfix">
+  {{yield (hash expanded=expanded)}}
+</div>
+
+<div class="row-btns">
+  <a data-id="expand-btn" class="expand-btn" {{action 'toggleExpand'}}></a>
+</div>

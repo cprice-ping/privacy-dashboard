@@ -1,0 +1,19 @@
+<h3 class="consent-record-info-subtitle consent-record-info-subtitle__what text-section-title">What</h3>
+<p class="text-body">
+  {{record.dataText}}
+</p>
+
+{{#if record.definition.hasFineGrainedConsent}}
+<div class="page-section-content">
+  {{fine-grained-consents
+          consentDetails=record.consentDetails
+          iframeSrc=record.definition.iframeSrc
+          onUpdate=(action 'detailsUpdated')
+          isVisible=detailsVisible}}
+</div>
+{{/if}}
+
+<h3 class="consent-record-info-subtitle consent-record-info-subtitle__why text-section-title">Why</h3>
+<p class="text-body">
+  {{record.purposeText}}
+</p>

@@ -1,0 +1,130 @@
+@import "ember-power-select";
+@import 'globals';
+@import 'ui-library.scss';
+@import 'icons/variables';
+@import 'icons/style';
+
+@import "ping_chrome";
+@import "controls";
+
+.torii-iframe-placeholder {
+  display: none;
+}
+
+.ember-application {
+  .section-title {
+    font-size: 28px;
+    padding-bottom: 30px;
+    color: #000;
+    font-weight: 400;
+    text-align: left;
+    border-bottom: 1px solid #d1d3d4;
+  }
+
+  .result-set {
+    text-align: left;
+    min-height: 40px;
+  }
+
+  .inline-icon {
+    position: relative;
+    top: -2px;
+  }
+
+  .consent-bottom-bar {
+    padding: 10px 25px;
+    background-color: #EEE;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .consent-context {
+    .consent-detail {
+      display: inline-block;
+      margin-right: 15px;
+    }
+  }
+
+  .expanded-content {
+    padding-bottom: 20px;
+  }
+
+  .consent-row {
+
+  }
+
+  .consent-row-info {
+    text-align: left;
+    color: #4C637D;
+  }
+
+  .consent-row-info-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4C637D;
+  }
+
+  .consent-record .page-section-content:last-of-type {
+    margin-bottom: 20px;
+  }
+
+  .consent-record-info-subtitle {
+    @extend .text-section-title;
+    margin: 15px 0 5px 0;
+
+    &.consent-record-info-subtitle__what {
+      margin-top: 0;
+    }
+  }
+
+  .fine-grained-consent-controls {
+    margin-top: 15px;
+  }
+
+  .fine-grained-consents {
+    position: relative;
+
+    &:after {
+      z-index: 5;
+      position: absolute;
+      display: block;
+      background-color: #FFF;
+      content: "Loading…";
+      text-align: center;
+      padding: 10% 0;
+      left: 0; right: 0; top: 0; bottom: 0;
+      pointer-events: none;
+    }
+  }
+
+  .fine-grained-consents.is-loaded {
+    &:after {
+      display: none;
+    }
+  }
+
+  .fine-grained-consents iframe {
+    margin: 5px 0 15px 0;
+    overflow: hidden;
+  }
+}
+
+#consent-container {
+  .page-group {
+    > label:first-child, > h3:first-child, > h4:first-child {
+      margin-bottom: 5px;
+    }
+  }
+  .text-section-title, .collapsible-section-title {
+    color: lighten(#3d454d, 12%);
+  }
+  .text-section-title {
+    margin: 10px 0 3px 0;
+  }
+}

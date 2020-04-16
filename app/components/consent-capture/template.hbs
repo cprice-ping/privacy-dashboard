@@ -1,0 +1,29 @@
+<div class="page-header page-header--underlined">
+  <div class="page-header__title">
+    {{record.titleText}}?
+  </div>
+</div>
+
+{{consent-record
+        record=record
+        onDetailsUpdate=(action 'setConsentDetails')
+        detailsVisible=true}}
+
+<hr class="hr hr--solid">
+
+<div class="align-center">
+  <div class="page-header__title">
+    Do you agree to these terms?
+  </div>
+</div>
+
+<div class="button-group">
+  <button type=button class="button primary" title="Yes"
+    disabled={{not saveConsentTask.isIdle}}
+    {{action 'saveConsent' true preventDefault=true}}
+  >Yes</button>
+  <button type=button class="button primary" title="No"
+    disabled={{not saveConsentTask.isIdle}}
+    {{action 'saveConsent' false preventDefault=true}}
+  >No</button>
+</div>

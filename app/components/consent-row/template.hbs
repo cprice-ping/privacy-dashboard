@@ -1,0 +1,26 @@
+{{#expandable-row
+  title=record.titleText
+  onToggleChange=(action 'saveConsentState')
+  toggleEnabled=(eq record.status 'accepted')
+as |info|}}
+
+  {{consent-record
+          record=record
+          onDetailsUpdate=(action 'saveConsentDetails')
+          detailsVisible=(and (eq record.status 'accepted') info.expanded)}}
+
+  <div class="consent-bottom-bar">
+    {{#if showConsentContext}}
+      {{consent-row/consent-context time=record.consentTime browser=record.consentBrowser ip=record.consentIpAddress}}
+    {{else}}
+      <div>
+        <span class="inline-icon icon-info"></span>
+        <a href="#" {{action "toggleShowConsentContext"}}>When did I agree to this?</a>
+      </div>
+    {{/if}}
+
+    {{! popup-menu title="File Data Request" options=record.availableActions onSelect=(action 'onDataRequest')}}
+  </div>
+{{/expandable-row}}
+
+{{yield}}

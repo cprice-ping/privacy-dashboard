@@ -1,0 +1,12 @@
+{{#if model.consentInitTaskInstance.isRunning}}
+  Loading…
+{{else if model.consentInitTaskInstance.error}}
+  An error occurred {{model.consentInitTaskInstance.error}}
+{{else}}
+  {{consent-capture
+          record=model.consentInitTaskInstance.value
+          onConsentSave=(action 'consentCaptured')
+  }}
+{{/if}}
+
+{{outlet}}

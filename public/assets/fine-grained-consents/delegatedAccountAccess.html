@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+
+  <link integrity="" rel="stylesheet" href="../vendor.css">
+  <link integrity="" rel="stylesheet" href="../privacy-dashboard.css">
+  <link integrity="" rel="stylesheet" href="iframe.css">
+  <script src="iframe.js" charset="utf-8"></script>
+  <style>
+
+  </style>
+</head>
+
+<body id="consent-container">
+
+  <h4 class="text-section-title">Delegated Access to your Account</h4>
+
+  <p class="text-body">
+    You can optionally set a Transfer Limits for them.
+  </p>
+
+  <form>
+    <div data-id="input-row" class="input-row input-row--line-height">
+      <label data-id="form-text-field" class="input-width-small input-text">
+        <span class="input-container" data-id="text-field_container">
+          <!--<label for="acctId">Account</label>-->
+          <input name="acctId" placeholder="Your Account" id="acctId" data-id="acctId-input" type="text" autocomplete="nope"
+            value="">
+          <!--<label for="acctMgr">Account Manager</label>-->
+          <input name="acctMgr" placeholder="Delegated Manager" id="acctMgr" data-id="acctMgr-input" type="text" autocomplete="nope"
+            value="">
+          <!--<label for="transfer">Transfer Limit</label>-->
+          <input name="transfer" placeholder="Transfer Limit" id="transfer" data-id="transfer-input" type="text" autocomplete="nope"
+            value="0">
+        </span>
+      </label>
+    </div>
+  </form>
+
+  <script type="text/javascript">
+
+    var $form = $("form");
+
+    // this script runs after the consent records are loaded by the parent frame
+    // it renders the permissions authorized by the consent record
+    window.App.onInitialize(function (details) {
+      var delegates = details.delegates;
+      if (delegates.length > 0) {
+        $form.find("[name=acctId]").val(delegates[0].AccountID);
+        $form.find("[name=acctMgr]").val(delegates[0].AccountManager);
+        $form.find("[name=transfer]").val(delegates[0].transfer);
+      }
+      App.resize();
+    });
+
+    $form.on("keyup", "[class=input-container]", function (evt) {
+      if ($form.find("[name=acctMgr]").val().trim() !== "") {
+        var parseInt = Number.parseInt || window.parseInt;
+        var acctId = parseInt($form.find("[name=acctId]").val().trim());
+        var acctMgr = $form.find("[name=acctMgr]").val().trim();
+        var transfer = parseInt($form.find("[name=transfer]").val().trim());
+        var consentDetails = { "delegates": [{ "AccountID": acctId, "AccountManager": acctMgr, "transfer": transfer }] };
+        App.saveConsentDetails(consentDetails);
+      }
+      else {
+        var consentDetails = { "delegates": [{ "AccountID": 0, "AccountManager": "", "transfer": 0 }] };
+        App.saveConsentDetails(consentDetails);
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
